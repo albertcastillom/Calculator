@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculator</title>
+</head>
+<body>
+
+    <div class="mainContainer">
+        <div id="display"></div>
+        <div class="calcFunctions"id="clear">AC</div>
+        <div  class="calcFunctions" id="+/-">+/-</div>
+        <div  class="calcFunctions" id="percentage">%</div>
+        <div  class="calcFunctions" id="division">/</div>
+        <div  class="calcFunctions" id="seven">7</div>
+        <div  class="calcFunctions" id="eight">8</div>
+        <div  class="calcFunctions" id="nine">9</div>
+        <div  class="calcFunctions" id="multiplication">x</div>
+        <div  class="calcFunctions" id="four">4</div>
+        <div  class="calcFunctions" id="five">5</div>
+        <div  class="calcFunctions" id="six">6</div>
+        <div  class="calcFunctions" id="subtraction">-</div>
+        <div  class="calcFunctions" id="one">1</div>
+        <div  class="calcFunctions" id="two">2</div>
+        <div  class="calcFunctions" id="three">3</div>
+        <div  class="calcFunctions" id="addition">+</div>
+        <div  class="calcFunctions" id="backspace"> </div>
+        <div  class="calcFunctions" id="zero">0</div>
+        <div  class="calcFunctions" id="decimal">.</div>
+        <div  class="calcFunctions" id="equals">=</div>
+    </div>
+
+    <script>
+    // operation functions
+    //--------------------
+
+    const add = function(x, y){
+        return x + y;
+    };
+
+    const subtract = function(x, y){
+        return x - y;
+    };
+
+    const multiply = function(x, y){
+        return x * y;
+    };
+
+    const divide = function(x, y){
+        if ( y === 0){
+        alert("Can NOT divide by zero");
+        return "error";
+        } 
+        return x / y;
+    };
+    //----------------------
+
+    //calculator operation variables
+
+    let firstNum = 0;
+    let secondNum = 0;
+    let operator = "";
+
+    //-----------------------------
+
+    // Operate Function
+
+    const operate = function( x, string , y){
+        if (string === "/"){
+            return divide(x,y);
+        }
+        else if( string === "x"){
+            return multiply(x, y);
+        }
+        else if(string === "+"){
+            return add(x, y);
+        }
+        else if(string === "-"){
+            return subtract(x, y);
+        }
+        else{
+            return "error";
+        }
+    };
+
+    //------------------------------
+
+
+
+    </script>
+    
+</body>
+</html>
