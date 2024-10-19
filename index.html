@@ -10,26 +10,26 @@
 
     <div class="mainContainer">
         <div id="display"></div>
-        <div class="calcFunctions"id="clear">AC</div>
-        <div  class="calcFunctions" id="+/-">+/-</div>
-        <div  class="calcFunctions" id="percentage">%</div>
-        <div  class="calcFunctions" id="division">/</div>
-        <div  class="calcFunctions" id="seven">7</div>
-        <div  class="calcFunctions" id="eight">8</div>
-        <div  class="calcFunctions" id="nine">9</div>
-        <div  class="calcFunctions" id="multiplication">x</div>
-        <div  class="calcFunctions" id="four">4</div>
-        <div  class="calcFunctions" id="five">5</div>
-        <div  class="calcFunctions" id="six">6</div>
-        <div  class="calcFunctions" id="subtraction">-</div>
-        <div  class="calcFunctions" id="one">1</div>
-        <div  class="calcFunctions" id="two">2</div>
-        <div  class="calcFunctions" id="three">3</div>
-        <div  class="calcFunctions" id="addition">+</div>
-        <div  class="calcFunctions" id="backspace"> </div>
-        <div  class="calcFunctions" id="zero">0</div>
-        <div  class="calcFunctions" id="decimal">.</div>
-        <div  class="calcFunctions" id="equals">=</div>
+        <button class="calcFunctions" id="clear">AC</button>
+        <button  class="calcFunctions" id="plusMinus">+/-</button>
+        <button  class="calcFunctions" id="percentage">%</button>
+        <button  class="calcFunctions" id="division">/</button>
+        <button  class="calcFunctions" id="seven">7</button>
+        <button  class="calcFunctions" id="eight">8</button>
+        <button  class="calcFunctions" id="nine">9</button>
+        <button  class="calcFunctions" id="multiplication">x</button>
+        <button  class="calcFunctions" id="four">4</button>
+        <button  class="calcFunctions" id="five">5</button>
+        <button  class="calcFunctions" id="six">6</button>
+        <button  class="calcFunctions" id="subtraction">-</button>
+        <button  class="calcFunctions" id="one">1</button>
+        <button  class="calcFunctions" id="two">2</button>
+        <button  class="calcFunctions" id="three">3</button>
+        <button  class="calcFunctions" id="addition">+</button>
+        <button  class="calcFunctions" id="backspace"> </button>
+        <button  class="calcFunctions" id="zero">0</button>
+        <button  class="calcFunctions" id="decimal">.</button>
+        <button  class="calcFunctions" id="equals">=</button>
     </div>
 
     <script>
@@ -62,23 +62,26 @@
     let firstNum = 0;
     let secondNum = 0;
     let operator = "";
+    let operatorUsed = "";
 
     //-----------------------------
 
     // Operate Function
 
     const operate = function( x, string , y){
+        num1 = Number(x);
+        num2 = Number(y);
         if (string === "/"){
-            return divide(x,y);
+            return divide(num1,num2);
         }
         else if( string === "x"){
-            return multiply(x, y);
+            return multiply(num1, num2);
         }
         else if(string === "+"){
-            return add(x, y);
+            return add(num1, num2);
         }
         else if(string === "-"){
-            return subtract(x, y);
+            return subtract(num1, num2);
         }
         else{
             return "error";
@@ -87,8 +90,146 @@
 
     //------------------------------
 
+    // clear Display function and display var
+
+    const display = document.querySelector("#display");
 
 
+    let runningDisplay = "";
+
+    let clearDisplayValue = function (){
+        runningDisplay = "";
+        display.textContent = "";
+    };
+
+    //----------------------------------------
+    // Clear display event 
+    const clearBtn = document.querySelector("#clear");
+    clearBtn.addEventListener("click", e =>{
+     clearDisplayValue();
+    });
+
+    //---------
+    // number btns events
+
+    const sevenBtn = document.querySelector("#seven");
+    sevenBtn.addEventListener("click", e => {
+        runningDisplay += "7";
+        display.textContent = runningDisplay;
+    });
+
+    const eightBtn = document.querySelector("#eight");
+    eightBtn.addEventListener("click", e => {
+        runningDisplay += "8";
+        display.textContent = runningDisplay;
+    });
+
+    const nineBtn = document.querySelector("#nine");
+    nineBtn.addEventListener("click", e => {
+        runningDisplay += "9";
+        display.textContent = runningDisplay;
+    });
+
+    const fourBtn = document.querySelector("#four");
+    fourBtn.addEventListener("click", e => {
+        runningDisplay += "4";
+        display.textContent = runningDisplay;
+    });
+
+    const fiveBtn = document.querySelector("#five");
+    fiveBtn.addEventListener("click", e => {
+        runningDisplay += "5";
+        display.textContent = runningDisplay;
+    });
+
+    const sixBtn = document.querySelector("#six");
+    sixBtn.addEventListener("click", e => {
+        runningDisplay += "6";
+        display.textContent = runningDisplay;
+    });
+
+    const oneBtn = document.querySelector("#one");
+    oneBtn.addEventListener("click", e => {
+        runningDisplay += "1";
+        display.textContent = runningDisplay;
+    });
+
+    const twoBtn = document.querySelector("#two");
+    twoBtn.addEventListener("click", e => {
+        runningDisplay += "2";
+        display.textContent = runningDisplay;
+    });
+
+    const threeBtn = document.querySelector("#three");
+    threeBtn.addEventListener("click", e => {
+        runningDisplay += "3";
+        display.textContent = runningDisplay;
+    });
+
+    const zeroBtn = document.querySelector("#zero");
+    zeroBtn.addEventListener("click", e => {
+        runningDisplay += "0";
+        display.textContent = runningDisplay;
+    });
+
+    const divisionBtn = document.querySelector("#division");
+    divisionBtn.addEventListener("click", e => {
+        firstNum = runningDisplay;
+        operatorUsed = "/";
+        runningDisplay += "/";
+        display.textContent = runningDisplay;
+    });
+
+    const multiplicationBtn = document.querySelector("#multiplication");
+    multiplicationBtn.addEventListener("click", e => {
+       firstNum = runningDisplay;
+       operatorUsed = "x";
+        runningDisplay += "x";
+        display.textContent = runningDisplay;
+    });
+
+    const subtractionBtn = document.querySelector("#subtraction");
+    subtractionBtn.addEventListener("click", e => {
+        firstNum = runningDisplay;
+        operatorUsed = "-";
+        runningDisplay += "-";
+        display.textContent = runningDisplay;
+    });
+    
+    const additionBtn = document.querySelector("#addition");
+    additionBtn.addEventListener("click", e => {
+        firstNum = runningDisplay;
+        operatorUsed = "+";
+        runningDisplay += "+";
+        display.textContent = runningDisplay;
+    });
+    
+    const plusMinus = document.querySelector("#plusMinus");
+    plusMinus.addEventListener("click", e =>{
+        // not working yet
+    });
+
+    //need equals, decimal, percentage, and to fininsh plusMinus btn
+
+    const equalsBtn = document.querySelector("#equals");
+    equalsBtn.addEventListener("click", e => {
+        if(operatorUsed === "/"){
+            const str = runningDisplay.split("/");
+            secondNum = str[1];
+        }else if(operatorUsed === "x"){
+            const str = runningDisplay.split("x");
+            secondNum = str[1];
+        }else if(operatorUsed === "-"){
+            const str = runningDisplay.split("-");
+            secondNum = str[1];
+        }else if(operatorUsed === "+"){
+            const str = runningDisplay.split("+");
+            secondNum = str[1];
+        }else{alert("error")}
+        display.textContent= operate(firstNum, operatorUsed, secondNum);
+    });
+
+   
     </script>
     
 </body>

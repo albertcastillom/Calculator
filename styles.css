@@ -11,13 +11,13 @@
     display: flex;
     width: 500px;
     height: 125px;
-    border-bottom: 3px solid black;
-    
-    
+    font-size: 72px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 20px;
 }
+
 .calcFunctions{
-    border-bottom: 3px solid black;
-   
     text-align: center;
     line-height: 125px;
     width: 125px;
