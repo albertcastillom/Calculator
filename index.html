@@ -50,8 +50,7 @@
 
     const divide = function(x, y){
         if ( y === 0){
-        alert("Can NOT divide by zero");
-        return "error";
+        return "silly";
         } 
         return x / y;
     };
@@ -84,7 +83,7 @@
             return subtract(num1, num2);
         }
         else{
-            return "error";
+            return "errorr";
         }
     };
 
@@ -96,6 +95,7 @@
 
 
     let runningDisplay = "";
+    let result = "";
 
     let clearDisplayValue = function (){
         runningDisplay = "";
@@ -107,6 +107,10 @@
     const clearBtn = document.querySelector("#clear");
     clearBtn.addEventListener("click", e =>{
      clearDisplayValue();
+     firstNum = "";
+     secondNum = "";
+     operatorUsed = "";
+     result = "";
     });
 
     //---------
@@ -174,59 +178,144 @@
 
     const divisionBtn = document.querySelector("#division");
     divisionBtn.addEventListener("click", e => {
+        if(operatorUsed != ""){
+            handleEqualsClick();
+        }
+        if( result != ""){
+            firstNum = result;
+            operatorUsed = "/";
+            runningDisplay = result + operatorUsed;
+        display.textContent = runningDisplay;
+        }else {
         firstNum = runningDisplay;
         operatorUsed = "/";
         runningDisplay += "/";
-        display.textContent = runningDisplay;
+        display.textContent = runningDisplay;}
     });
 
     const multiplicationBtn = document.querySelector("#multiplication");
     multiplicationBtn.addEventListener("click", e => {
+        if(operatorUsed != ""){
+            handleEqualsClick();
+        }
+        if( result != ""){
+            firstNum = result;
+            operatorUsed = "x";
+            runningDisplay = result + operatorUsed;
+        display.textContent = runningDisplay;
+        }else {
        firstNum = runningDisplay;
        operatorUsed = "x";
         runningDisplay += "x";
-        display.textContent = runningDisplay;
+        display.textContent = runningDisplay;}
     });
 
     const subtractionBtn = document.querySelector("#subtraction");
     subtractionBtn.addEventListener("click", e => {
+        if(operatorUsed != ""){
+            handleEqualsClick();
+        }
+        if( result != ""){
+            firstNum = result;
+            operatorUsed = "-";
+            runningDisplay = result + operatorUsed;
+        display.textContent = runningDisplay;
+        }else {
         firstNum = runningDisplay;
         operatorUsed = "-";
         runningDisplay += "-";
-        display.textContent = runningDisplay;
+        display.textContent = runningDisplay;}
     });
     
     const additionBtn = document.querySelector("#addition");
     additionBtn.addEventListener("click", e => {
+        
+        if(operatorUsed != ""){
+            handleEqualsClick();
+        }
+        if( result != ""){
+            firstNum = result;
+            operatorUsed = "+";
+            runningDisplay = result + operatorUsed;
+        display.textContent = runningDisplay;
+        }else {
         firstNum = runningDisplay;
         operatorUsed = "+";
         runningDisplay += "+";
-        display.textContent = runningDisplay;
+        display.textContent = runningDisplay;}
     });
     
     const plusMinus = document.querySelector("#plusMinus");
     plusMinus.addEventListener("click", e =>{
-        // not working yet
+        if(secondNum === ""){
+            firstNum = "-" + firstNum;
+            runningDisplay = "-" + runningDisplay;
+            display.textContent = runningDisplay;
+        }
+        else {
+            secondNum = "-" + secondNum;
+            
+        }
     });
 
-    //need equals, decimal, percentage, and to fininsh plusMinus btn
+    const decimalBtn = document.querySelector("#decimal");
+    decimalBtn.addEventListener("click", e => {
+        runningDisplay += ".";
+        display.textContent = runningDisplay;
+    });
 
-    const equalsBtn = document.querySelector("#equals");
-    equalsBtn.addEventListener("click", e => {
+    const percentageBtn = document.querySelector("#percentage");
+    percentageBtn.addEventListener("click", e => {
         if(operatorUsed === "/"){
             const str = runningDisplay.split("/");
-            secondNum = str[1];
+             runningDisplay =  str[0] + "/" + (Number(str[1])* 0.01);
+             display.textContent = runningDisplay;
         }else if(operatorUsed === "x"){
             const str = runningDisplay.split("x");
-            secondNum = str[1];
+             runningDisplay =  str[0] + "x" + (Number(str[1])* 0.01);
+             display.textContent = runningDisplay;
         }else if(operatorUsed === "-"){
             const str = runningDisplay.split("-");
+             runningDisplay =  str[0] + "-" + (Number(str[1])* 0.01);
+             display.textContent = runningDisplay;
+        }else if(operatorUsed === "+"){
+            const str = runningDisplay.split("+");
+             runningDisplay =  str[0] + "+" + (Number(str[1])* 0.01);
+             display.textContent = runningDisplay;
+        }else{
+        runningDisplay = (Number(runningDisplay)* 0.01);
+        display.textContent = runningDisplay;
+        }
+    });
+    
+    function handleEqualsClick(){
+        if(operatorUsed === ""){
+            runningDisplay = "";}
+        else if(operatorUsed === "/"){
+            const str = runningDisplay.split("/");
             secondNum = str[1];
+            result = operate(firstNum, operatorUsed, secondNum);
+           
+            display.textContent = result;        }else if(operatorUsed === "x"){
+            const str = runningDisplay.split("x");
+            secondNum = str[1];
+            result = operate(firstNum, operatorUsed, secondNum);
+            display.textContent = result;        }else if(operatorUsed === "-"){
+            const str = runningDisplay.split("-");
+            secondNum = str[1];
+            result = operate(firstNum, operatorUsed, secondNum);
+            display.textContent = result;
         }else if(operatorUsed === "+"){
             const str = runningDisplay.split("+");
             secondNum = str[1];
+            result = operate(firstNum, operatorUsed, secondNum);
+            display.textContent = result;
         }else{alert("error")}
-        display.textContent= operate(firstNum, operatorUsed, secondNum);
+        
+    }
+    const equalsBtn = document.querySelector("#equals");
+    equalsBtn.addEventListener("click", e => {
+       handleEqualsClick();
     });
 
    

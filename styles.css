@@ -3,18 +3,20 @@
     display: flex;
     border: 3px solid black;
     flex-wrap: wrap;
-    width: 503px;
-    height:753px;
+    width: 500px;
+    height:805px;
+    border-radius: 5px;
 }
 
 #display{
     display: flex;
     width: 500px;
-    height: 125px;
+    height: 175px;
     font-size: 72px;
     align-items: flex-end;
     justify-content: flex-end;
     padding-right: 20px;
+    border: 3px solid black;
 }
 
 .calcFunctions{
@@ -23,4 +25,15 @@
     width: 125px;
     height: 125px;
     font-size: 32px;
+    border: 3px solid black;
+    
+}
+button{
+    border: none;
+    background-color: white;
+    border-radius: 0px;
+}
+
+#equals{
+    background-color: lightcoral;
 }
